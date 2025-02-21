@@ -15,10 +15,19 @@ interface Celebrity {
   description: string;
 }
 
+// Define API response structure
+interface ApiResponse {
+  births?: {
+    text: string;
+    year: number;
+    pages?: { description?: string; extract?: string }[];
+  }[];
+}
+
 export default function BirthdayTwins({ dob }: BirthdayTwinsProps) {
   const [twins, setTwins] = useState<Celebrity[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
+  const [error, setError] = useState<string>("");
 
   useEffect(() => {
     if (!dob) return;
@@ -26,31 +35,38 @@ export default function BirthdayTwins({ dob }: BirthdayTwinsProps) {
     const birthDate = new Date(dob);
     const month = birthDate.getMonth() + 1;
     const day = birthDate.getDate();
-    
+
     const fetchBirthdays = async () => {
       try {
         setLoading(true);
         setError("");
 
-        const response = await fetch(`https://en.wikipedia.org/api/rest_v1/feed/onthisday/births/${month}/${day}`);
-        const data = await response.json();
+        const response = await fetch(
+          `https://en.wikipedia.org/api/rest_v1/feed/onthisday/births/${month}/${day}`
+        );
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data: ApiResponse = await response.json();
 
         if (!data.births) throw new Error("No data found.");
 
         // Extract relevant details, preferring well-known figures
         const famousPeople = data.births
-          .filter((person: any) => person.pages?.[0]?.description)
+          .filter((person) => person.pages?.[0]?.description)
           .slice(0, 2) // Pick the 2 most notable ones
-          .map((person: any) => ({
+          .map((person) => ({
             name: person.text,
-            profession: person.pages[0].description || "Notable figure",
+            profession: person.pages?.[0]?.description || "Notable figure",
             birthYear: person.year,
-            description: person.pages[0].extract || "",
+            description: person.pages?.[0]?.extract || "",
           }));
 
         setTwins(famousPeople);
-      } catch (err: any) {
-        setError(`${err} Failed to fetch famous birthdays.`);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "Failed to fetch famous birthdays.");
       } finally {
         setLoading(false);
       }
