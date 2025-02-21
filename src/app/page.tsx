@@ -7,7 +7,7 @@ import MilestoneResults from "@/components/MilestoneResults";
 // import LifeHeatmap from "@/components/LifeHeatmap";
 import BirthdayTwins from "@/components/BirthdayTwins";
 import { motion } from "framer-motion";
-import LifeStats from "@/components/LifeStats";
+//import LifeStats from "@/components/LifeStats";
 
 export default function Home() {
   const [dob, setDob] = useState("");
