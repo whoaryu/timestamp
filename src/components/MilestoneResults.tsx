@@ -28,13 +28,13 @@ export default function MilestoneResults({ dob }: MilestoneResultsProps) {
     milestoneDays.forEach((days) => {
       const milestoneDate = new Date(birthDate.getTime() + days * 24 * 60 * 60 * 1000);
       if (milestoneDate < today) {
-        results.push(`✅ You turned <strong>${days}</strong> days old on ${milestoneDate.toDateString()}.`);
+        results.push(`✅ You turned ${days} days old on ${milestoneDate.toDateString()}.`);
       } else {
-        results.push(`🔜 You will turn <strong>${days}</strong> days old on ${milestoneDate.toDateString()}.`);
+        results.push(`🔜 You will turn ${days} days old on ${milestoneDate.toDateString()}.`);
       }
     });
 
-    results.push(`📅 You are currently <strong>${diffDays}</strong> days old.`);
+    results.push(`📅 You are currently ${diffDays} days old.`);
 
     setMilestones(results);
     setZodiacSign(getZodiacSign(birthDate));
@@ -115,7 +115,7 @@ export default function MilestoneResults({ dob }: MilestoneResultsProps) {
             className="flex items-start gap-3 text-gray-700 dark:text-gray-300 bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-700 p-4 rounded-lg shadow-md border border-gray-300 dark:border-gray-600"
           >
             <CheckCircle className="text-green-500 mt-1" size={22} />
-            <span dangerouslySetInnerHTML={{ __html: milestone }} />
+            <span dangerouslySetInnerHTML={{ __html: milestone.replace(/(\d{1,5}) days old/, "<strong>$1 days old</strong>") }} />
           </motion.li>
         ))}
       </ul>
