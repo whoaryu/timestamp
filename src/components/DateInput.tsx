@@ -26,7 +26,7 @@ export default function DateInput({ onCalculate }: DateInputProps) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col items-center gap-6 p-8 bg-white dark:bg-gray-900 rounded-2xl shadow-xl w-full max-w-md transition-all"
+      className="flex flex-col items-center gap-6 p-8 bg-gradient-to-br from-gray-100 to-gray-300 dark:from-gray-900 dark:to-gray-800rounded-2xl shadow-xl w-full max-w-md transition-all"
     >
       <h2 className="text-2xl font-bold text-gray-800 dark:text-white">Enter Your Date of Birth</h2>
 
