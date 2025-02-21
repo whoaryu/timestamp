@@ -28,13 +28,13 @@ export default function MilestoneResults({ dob }: MilestoneResultsProps) {
     milestoneDays.forEach((days) => {
       const milestoneDate = new Date(birthDate.getTime() + days * 24 * 60 * 60 * 1000);
       if (milestoneDate < today) {
-        results.push(`✅ You turned ${days} days old on ${milestoneDate.toDateString()}.`);
+        results.push(`✅ You turned <strong>${days}</strong> days old on ${milestoneDate.toDateString()}.`);
       } else {
-        results.push(`🔜 You will turn ${days} days old on ${milestoneDate.toDateString()}.`);
+        results.push(`🔜 You will turn <strong>${days}</strong> days old on ${milestoneDate.toDateString()}.`);
       }
     });
 
-    results.push(`📅 You are currently ${diffDays} days old.`);
+    results.push(`📅 You are currently <strong>${diffDays}</strong> days old.`);
 
     setMilestones(results);
     setZodiacSign(getZodiacSign(birthDate));
@@ -83,7 +83,7 @@ export default function MilestoneResults({ dob }: MilestoneResultsProps) {
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="mt-6 p-8 bg-gradient-to-br from-gray-100 to-gray-300 dark:from-gray-900 dark:to-gray-800 rounded-2xl shadow-xl max-w-lg w-full"
+      className="mt-6 p-8 bg-white dark:bg-gray-900 backdrop-blur-md bg-opacity-80 dark:bg-opacity-75 shadow-2xl rounded-3xl max-w-lg w-full border border-gray-200 dark:border-gray-700"
     >
       <h2 className="text-3xl font-bold flex items-center gap-3 text-gray-800 dark:text-white">
         <Calendar className="text-blue-500" size={28} /> Your Milestones
@@ -112,10 +112,10 @@ export default function MilestoneResults({ dob }: MilestoneResultsProps) {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: index * 0.15 }}
-            className="flex items-start gap-3 text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-800 p-4 rounded-lg shadow-sm"
+            className="flex items-start gap-3 text-gray-700 dark:text-gray-300 bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-700 p-4 rounded-lg shadow-md border border-gray-300 dark:border-gray-600"
           >
             <CheckCircle className="text-green-500 mt-1" size={22} />
-            <span dangerouslySetInnerHTML={{ __html: milestone.replace(/(\d{1,5}) days old/, "<strong>$1 days old</strong>") }} />
+            <span dangerouslySetInnerHTML={{ __html: milestone }} />
           </motion.li>
         ))}
       </ul>
@@ -123,7 +123,7 @@ export default function MilestoneResults({ dob }: MilestoneResultsProps) {
       {/* Copy Button */}
       <button
         onClick={handleCopy}
-        className="mt-6 flex items-center justify-center gap-2 w-full px-5 py-3 text-lg font-semibold text-white bg-gradient-to-r from-green-500 to-green-700 rounded-lg hover:opacity-80 transition-all shadow-md"
+        className="mt-6 flex items-center justify-center gap-2 w-full px-5 py-3 text-lg font-semibold text-white bg-gradient-to-r from-green-500 to-green-700 rounded-lg hover:scale-105 transition-all shadow-md"
       >
         <Copy size={22} /> {copied ? "Copied!" : "Copy Milestones"}
       </button>
