@@ -15,7 +15,7 @@ export default function LifeStats({ dob }: LifeStatsProps) {
     return now.getFullYear() - birthDate.getFullYear();
   }, [birthDate]);
 
-  const avgLifespan = 80; // Assume 80 years as average lifespan
+  //const avgLifespan = 80; // Assume 80 years as average lifespan
   const totalDaysLived = age * 365;
   //const totalDaysInLife = avgLifespan * 365;
 
