@@ -12,7 +12,7 @@ export default function LifeFunFacts({ dob }: LifeFunFactsProps) {
   const birthDate = useMemo(() => new Date(dob), [dob]);
   const now = new Date();
   const ageInDays = Math.floor((now.getTime() - birthDate.getTime()) / (1000 * 60 * 60 * 24));
-  const ageInYears = Math.floor(ageInDays / 365);
+  //const ageInYears = Math.floor(ageInDays / 365);
 
   // Fun Facts
   const funFacts = useMemo(
