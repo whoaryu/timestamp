@@ -7,6 +7,7 @@ import MilestoneResults from "@/components/MilestoneResults";
 // import LifeHeatmap from "@/components/LifeHeatmap";
 import BirthdayTwins from "@/components/BirthdayTwins";
 import { motion } from "framer-motion";
+import LifeFunFacts from "@/components/LifeFunFacts";
 //import LifeStats from "@/components/LifeStats";
 
 export default function Home() {
@@ -45,6 +46,7 @@ export default function Home() {
           {/* <LifeHeatmap dob={dob} /> */}
           <BirthdayTwins dob={dob} />
           {/* <LifeStats dob={dob} /> */}
+          <LifeFunFacts dob={dob} />
 
         </motion.div>
       )}

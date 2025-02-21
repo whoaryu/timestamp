@@ -71,11 +71,12 @@ export default function LifeStats({ dob }: LifeStatsProps) {
       <div className="mt-6 text-center">
         <p className="text-lg font-semibold">You have lived <span className="text-yellow-300">{totalDaysLived.toLocaleString()}</span> days!</p>
         <p className="mt-2 text-md text-gray-200">
-          You've **slept** for <span className="text-pink-300">{Math.floor(lifeStats[0].value)} days</span> so far! 😴  
-        </p>
-        <p className="mt-2 text-md text-gray-200">
-          That's about <span className="text-blue-300">{(lifeStats[0].value / 365).toFixed(1)} years</span> of just sleeping!
-        </p>
+  You&apos;ve <strong>slept</strong> for <span className="text-pink-300">{Math.floor(lifeStats[0].value)} days</span> so far! 😴  
+</p>
+<p className="mt-2 text-md text-gray-200">
+  That&apos;s about <span className="text-blue-300">{(lifeStats[0].value / 365).toFixed(1)} years</span> of just sleeping!
+</p>
+
       </div>
     </motion.div>
   );
