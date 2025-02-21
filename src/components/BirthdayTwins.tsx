@@ -49,8 +49,8 @@ export default function BirthdayTwins({ dob }: BirthdayTwinsProps) {
           }));
 
         setTwins(famousPeople);
-      } catch (err) {
-        setError("Failed to fetch famous birthdays.");
+      } catch (err: any) {
+        setError(`${err} Failed to fetch famous birthdays.`);
       } finally {
         setLoading(false);
       }
